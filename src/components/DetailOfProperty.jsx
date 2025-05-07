@@ -13,7 +13,7 @@ import {
   MdOutlineMailOutline,
 } from "react-icons/md";
 
-const images = [
+const dummyImages = [
   "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG91c2V8ZW58MHx8MHx8fDA%3D",
   "https://images.unsplash.com/photo-1598228723793-52759bba239c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGhvdXNlfGVufDB8fDB8fHww",
   "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aG91c2V8ZW58MHx8MHx8fDA%3D",
@@ -24,6 +24,7 @@ const images = [
 
 const DetailOfProperty = () => {
   const [current, setCurrent] = useState(0);
+  const [images, setImages] = useState([...dummyImages]);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
   const prevSlide = () =>
@@ -41,13 +42,13 @@ const DetailOfProperty = () => {
         {/* Carousel Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/70 rounded-full p-1 shadow"
+          className="absolute cursor-pointer top-1/2 left-2 transform -translate-y-1/2 bg-white/70 rounded-full p-1 shadow"
         >
           <MdKeyboardArrowLeft size={24} />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/70 rounded-full p-1 shadow"
+          className="absolute cursor-pointer top-1/2 right-2 transform -translate-y-1/2 bg-white/70 rounded-full p-1 shadow"
         >
           <MdKeyboardArrowRight size={24} />
         </button>

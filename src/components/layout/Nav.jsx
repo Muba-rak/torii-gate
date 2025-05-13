@@ -6,7 +6,7 @@ import { axiosInstance } from "../../utils/axiosInstance";
 
 const Nav = ({ bg }) => {
   const [showLogout, setShowLogout] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <nav className={bg ? `${bg}` : "bg-[#00000042]"}>
       <div className="navbar  text-white lg:h-[80px] layout">

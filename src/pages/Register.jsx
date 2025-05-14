@@ -220,7 +220,11 @@ const Register = () => {
           disabled={isSubmitting}
           className="btn w-full h-[56px] rounded-lg bg-black text-white block mt-6"
         >
-          {isSubmitting ? "Registering...." : "Register"}
+          {isSubmitting ? (
+            <span className="loading loading-spinner loading-md"></span>
+          ) : (
+            "Register"
+          )}
         </button>
 
         {/* Link to login */}

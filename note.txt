@@ -29,3 +29,6 @@ REgistration
 3. response - success or error
 a. redirec to the verify page
 b. error (display error)
+
+Login
+1. input validation

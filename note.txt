@@ -32,3 +32,9 @@ b. error (display error)
 
 Login
 1. input validation
+
+
+LOGIN page
+appcontext
+nav
+dashBoardLayout

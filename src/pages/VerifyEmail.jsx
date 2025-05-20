@@ -29,7 +29,7 @@ const VerifyEmail = () => {
 
   if (status === "verifying") {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen bg-[#fbfbfb]">
         <div className="w-full max-w-[505px] py-[29px] px-[26px] shadow-md text-center">
           <BounceLoader className="mx-auto my-2" />
           <h1 className="text-xl lg:text-[30px] font-semibold my-3">
@@ -42,7 +42,7 @@ const VerifyEmail = () => {
   }
   if (status === "success") {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen bg-[#fbfbfb]">
         <div className="w-full max-w-[505px] py-[29px] px-[26px] shadow-md text-center">
           <img src={icon} alt="verify" className="block mx-auto" />
           <h1 className="text-xl lg:text-[30px] font-semibold my-3">
@@ -62,7 +62,7 @@ const VerifyEmail = () => {
   }
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen bg-[#fbfbfb]">
       <div className="w-full max-w-[505px] py-[29px] px-[26px] shadow-md text-center">
         <MdCancel size={80} className="text-red-500 mx-auto" />
         <h1 className="text-xl lg:text-[30px] font-semibold my-3">

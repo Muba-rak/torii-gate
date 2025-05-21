@@ -29,7 +29,7 @@ const ResetPassword = () => {
     <AuthWrapper>
       <form
         onSubmit={handleSubmit(handleResetPassword)}
-        className="w-full lg:w-[505px] p-6"
+        className="w-full lg:w-[505px] p-6 shadow-lg"
       >
         <h1 className="text-3xl font-bold">Reset Password</h1>
         <p className="text-[16px] font-medium text-[#666]">

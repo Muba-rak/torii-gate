@@ -11,16 +11,9 @@ const phone_regex = /^\+234[789][01]\d{8}$/;
 
 const validationSchema = yup.object().shape({
   fullName: yup.string().required("Enter Your Full Name"),
-  email: yup
-    .string()
-    .email("Invalid email address")
-    .required("Email is required"),
   tel1: yup
     .string()
     .matches(phone_regex, "phone number must be +234 and valid"),
-  tel2: yup
-    .string()
-    .matches(phone_regex, "phone number must be +234 and valid "),
 });
 
 const Profile = () => {
@@ -48,7 +41,7 @@ const Profile = () => {
     <div>
       <div className=" ">
         <div className="max-w-[121px] pt-4">
-          <h1 className="w-full font-[500] font-[mona Sans] text-[22px] text-black capitalize">
+          <h1 className="w-full font-[500]  text-[22px] text-black capitalize">
             profile
           </h1>
           <div className="flex items-center  gap-2 capitalize text-[14px]">
@@ -59,7 +52,7 @@ const Profile = () => {
         </div>
         <form
           onSubmit={handleSubmit(login)}
-          className="mx-auto xl:w-[804px] w-full p-3 bg-white mt-3 mb-7 shadow-lg rounded-lg"
+          className="mx-auto lg:w-[804px] w-full p-3 bg-white mt-3 mb-7 shadow-lg rounded-lg"
         >
           <div className="lg:flex-row flex justify-between flex-col ">
             <img
@@ -86,8 +79,10 @@ const Profile = () => {
             <input
               type="text"
               placeholder={user.fullName}
-              className={`bg-[#fbfbfb] w-full h-[45px] text-black px-2 outline-0  ${
-                errors.fullName ? "border border-red-500" : ""
+              className={`bg-[#fbfbfb] w-full h-[45px] text-black px-2 outline-0 rounded-lg   ${
+                errors.fullName
+                  ? "border border-red-500"
+                  : "border border-[#f6f6f6]"
               }`}
               {...register("fullName")}
               readOnly={!isEditable}
@@ -104,15 +99,9 @@ const Profile = () => {
             <input
               type="email"
               placeholder={user.email}
-              className={`bg-[#fbfbfb] w-full h-[45px]  text-black px-2 outline-0 ${
-                errors.email ? "border border-red-500" : ""
-              }`}
-              {...register("email")}
-              readOnly={!isEditable}
+              className={`bg-[#fbfbfb] w-full h-[45px]  text-black px-2 outline-0 rounded-lg border  border-[#f6f6f6]`}
+              readOnly
             />
-            <p className="text-red-500">
-              {errors.email && errors.email.message}
-            </p>
           </div>
 
           <div className="my-[20px] mx-3">
@@ -122,8 +111,10 @@ const Profile = () => {
             <input
               type="tel"
               placeholder={user.phoneNumber}
-              className={`bg-[#fbfbfb] w-full h-[45px]  text-black px-2 outline-0 ${
-                errors.tel1 ? "border border-red-500" : ""
+              className={`bg-[#fbfbfb] w-full h-[45px]  text-black px-2 outline-0 rounded-lg ${
+                errors.tel1
+                  ? "border border-red-500"
+                  : "border border-[#f6f6f6]"
               }`}
               {...register("tel1")}
               readOnly={!isEditable}

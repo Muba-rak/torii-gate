@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAppContext } from "../hooks/useAppContext";
+import { axiosInstance } from "../utils/axiosInstance";
+import { toast } from "react-toastify";
 
 const phone_regex = /^\+?[1-9][0-9]{7,14}$/;
 
@@ -14,7 +16,7 @@ const validationSchema = yup.object().shape({
 });
 
 const Profile = () => {
-  const { user } = useAppContext();
+  const { user, token, updateUser } = useAppContext();
   const {
     register,
     handleSubmit,
@@ -31,6 +33,7 @@ const Profile = () => {
 
   const [isEditable, setIsEditable] = useState(false);
   const [selectedImage, setSelectedImage] = useState(user.profilePicture);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -40,9 +43,30 @@ const Profile = () => {
     }
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Saved Data:", data);
-    setIsEditable(false);
+    setIsSubmitting(true);
+
+    try {
+      const response = await axiosInstance.patch(
+        "/auth/user",
+        { ...data },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        updateUser(response?.data?.user);
+        setIsEditable(false);
+        toast.success("Profile Updated Successfully");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -129,9 +153,7 @@ const Profile = () => {
         </div>
 
         <div className="my-5">
-          <label className="block text-black text-sm mb-1">
-            Phone Number 1
-          </label>
+          <label className="block text-black text-sm mb-1">Phone Number</label>
           <input
             type="tel"
             placeholder={user.phoneNumber}
@@ -155,9 +177,14 @@ const Profile = () => {
           <div className="flex gap-4 mt-6">
             <button
               type="submit"
+              disabled={isSubmitting}
               className="bg-black text-white py-2 px-4 rounded cursor-pointer"
             >
-              Save Changes
+              {isSubmitting ? (
+                <span className="loading loading-spinner loading-md"></span>
+              ) : (
+                "Save Changes"
+              )}
             </button>
             <button
               type="button"

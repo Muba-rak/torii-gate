@@ -78,7 +78,7 @@ const CreateForm = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-1.5">
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-2.5">
       {showModal && <ConfirmModal setShowModal={setShowModal} />}
       <h1 className="text-2xl font-bold mb-6">Create New Property</h1>
 

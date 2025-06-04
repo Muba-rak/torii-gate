@@ -8,7 +8,9 @@ import ConfirmModal from "./ConfirmModal";
 import { useAppContext } from "../hooks/useAppContext";
 import { axiosInstance } from "../utils/axiosInstance";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const CreateForm = () => {
+  const redirect = useNavigate();
   const {
     register,
     handleSubmit,
@@ -56,8 +58,7 @@ const CreateForm = () => {
     Object.entries(data).forEach(([key, value]) => {
       formData.append(key, value);
     });
-    // e.g. send formData via fetch or axios
-    console.log("Form submitted", formData);
+
     try {
       const response = await axiosInstance.post("/property", formData, {
         headers: { Authorization: `Bearer ${token}` },
@@ -68,6 +69,10 @@ const CreateForm = () => {
         setImages(Array(6).fill(null));
         setImagePreviews(Array(6).fill(null));
         setShowModal(true);
+      }
+      if (response.status === 401) {
+        toast.warning("session expired");
+        redirect("/login");
       }
     } catch (error) {
       console.log(error);

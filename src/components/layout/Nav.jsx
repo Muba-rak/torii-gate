@@ -50,6 +50,13 @@ const Nav = ({ bg }) => {
                 <li>
                   <Link to="/contact">Contact</Link>
                 </li>
+                {user?.role === "landlord" && (
+                  <>
+                    <li>
+                      <Link to="/dashboard">Switch to Landlord</Link>
+                    </li>
+                  </>
+                )}
               </ul>
             ) : (
               <ul
@@ -103,6 +110,14 @@ const Nav = ({ bg }) => {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
+            {user?.role === "landlord" && (
+              <>
+                <li>
+                  <Link to="/dashboard">Switch to Landlord</Link>
+                </li>
+              </>
+            )}
+
             {!user && (
               <>
                 <li>
